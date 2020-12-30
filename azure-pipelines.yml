@@ -22,4 +22,4 @@ steps:
     csmFile: 'AzureDeploy/azuredeploy.json'
     overrideParameters: '-projectName dataextract -linkedTemplateUri https://raw.githubusercontent.com/SVB-knowmywork/ARM-Template-Deployment/main/AzureDeploy/linkedStorageAccount.json'
     deploymentMode: 'Incremental'
-    deploymentName: 'ARM Template Github Deploy'
+    deploymentName: 'ARMTemplateDeployment'
