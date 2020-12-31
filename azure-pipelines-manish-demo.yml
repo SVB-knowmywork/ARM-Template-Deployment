@@ -1,0 +1,25 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- main
+
+pool:
+  vmImage: 'ubuntu-latest'
+
+steps:
+- task: AzureResourceManagerTemplateDeployment@3
+  inputs:
+    deploymentScope: 'Resource Group'
+    azureResourceManagerConnection: 'DataExtractorPipeline-conn'
+    subscriptionId: 'f9990217-37a3-4dac-992b-74f4b801d41f'
+    action: 'Create Or Update Resource Group'
+    resourceGroupName: 'dev'
+    location: 'Central US'
+    templateLocation: 'Linked artifact'
+    csmFile: 'AzureDeploy/azuredeploy.json'
+    overrideParameters: '-projectName dataextract -linkedTemplateUri https://raw.githubusercontent.com/SVB-knowmywork/ARM-Template-Deployment/main/AzureDeploy/linkedStorageAccount.json'
+    deploymentMode: 'Incremental'
+    deploymentName: 'ResourceCreationDemoManish'
